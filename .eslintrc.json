@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "import/default": 0,
+    "import/no-duplicates": 0,
+    "import/named": 0,
+    "import/namespace": 0,
+    "import/no-unresolved": 0,
+    "import/no-named-as-default": 2,
+    "comma-dangle": 0,
+    "no-console": 0,
+    "no-alert": 0,
+    "id-length": [2, { "min": 2, "max": 30, "exceptions": ["_", "$"]}],
+    "no-param-reassign": [2, {"props": false}],
+    "no-unused-vars": [1, { "vars" : "all", "args" : "after-used" }],
+    "no-underscore-dangle": 0,
+    "array-callback-return": 0,
+    "no-else-return": 0
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "plugins": [
+    "import"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules"]
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base"
+  ]
+}
