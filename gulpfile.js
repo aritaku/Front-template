@@ -34,32 +34,35 @@ gulp.task('minify-css', ['sass'], function () {
       .pipe(plumber())
       .pipe(cleanCss({ compatibility: 'ie8' }))
       .pipe(rename({ suffix: '.min' }))
-      .pipe(gulp.dest('./css/min'))
+      .pipe(gulp.dest('./public/css'))
       .pipe(browser.reload({
         stream: true
       }))
 });
 
-gulp.task("ejs", function() {
-    gulp.src(["ejs/**/*.ejs","ejs/*.ejs"])
+gulp.task('minify-js', function () {
+  gulp.src('js/*.js')
+      .pipe(plumber())
+      .pipe(uglify())
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(gulp.dest('./public/js'))
+      .pipe(browser.reload({
+        stream: true
+      }))
+});
+
+gulp.task('ejs', function() {
+    gulp.src(['ejs/**/_*.ejs','ejs/*.ejs'])
         .pipe(plumber())
         .pipe(ejs())
         .pipe(rename({extname: '.html'}))
-        .pipe(gulp.dest("./js"))
+        .pipe(gulp.dest("./public"))
         .pipe(browser.reload({
           stream:true
         }))
 });
 
-gulp.task('minify-js', ['ejs'], function () {
-  gulp.src(['js/**/*.js', '!js/min/**/*.js'])
-      .pipe(plumber())
-      .pipe(uglify())
-      .pipe(gulp.dest('./js/min'))
-      .pipe(browser.reload({stream: true}))
-});
-
-gulp.task('build', ['minify-css', 'minify-js']);
+gulp.task('build', ['minify-css', 'minify-js', 'ejs']);
 
 gulp.task('default', ['server'], function () {
   gulp.watch('sass/**/*.scss', ['sass']);
