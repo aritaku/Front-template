@@ -4,8 +4,9 @@
   "description": "LPなどを作成するときの構成のテンプレート",
   "main": "index.js",
   "scripts": {
-    "build": "",
-    "postinstall": "gulp build"
+    "build": "gulp build",
+    "postinstall": "gulp build",
+    "dev": "gulp"
   },
   "repository": {
     "type": "git",
